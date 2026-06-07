@@ -71,3 +71,7 @@ Visit `http://127.0.0.1:8000`.
 ## Tech Stack
 
 Python, FastAPI, SQLAlchemy, sqlitedict (faux-blockchain), htpy, Alembic, numpy, qrcode, PostgreSQL / SQLite.
+
+## Acknowledgment
+
+This project was originally based on [Erik Williams' FastAPI-Blockchain](https://github.com/EPW80/FastAPI-Blockchain). As the client's requirements evolved, it grew beyond the original scope — adding role-based supply chain workflows, IoT integration, and a more domain-specific data model — but the initial blockchain concept came from Erik's work.
