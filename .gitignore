@@ -1,5 +1,12 @@
 data/*
 
+# Uploaded images
+files/dash.jpg
+files/img_ternak/
+files/sert_rph/
+files/sertifikat/
+files/sk_penyelia/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
