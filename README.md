@@ -1,58 +1,73 @@
-# Blockchain + FastAPI
+# Archived: FastAPI-Blockchain — Proof-of-Concept Halal Meat Traceability
 
-This project implements a simple blockchain system using Python, combined with the power of the FastAPI framework to interact with the blockchain via RESTful endpoints.
+> **This is a proof-of-concept, archived in favor of a Laravel rewrite. Code is preserved for reference only.**
+
+## Overview
+
+A proof-of-concept halal meat (beef/mutton) traceability application. Tracks livestock from farm → slaughterhouse → market, recording every step in a **faux-blockchain** (sqlitedict-backed, single-node, no PoW — a toy blockchain for demonstrating provenance).
+
+Each stakeholder in the supply chain gets a role-based dashboard.
+
+## Faux-Blockchain
+
+The `Blockchain` class in `src/blockchain.py` uses sqlitedict as a simple key-value store with SHA-256 hashing to link blocks. No distributed consensus, no mining difficulty — just a hash chain to demonstrate provenance tracking.
+
+## Stakeholder Roles
+
+| Role | Description |
+|------|-------------|
+| `peternak` | Farmer — registers livestock |
+| `rph` | Slaughterhouse — receives animals |
+| `juleha` | Halal slaughterer |
+| `penyelia` | Supervisor — validates halal compliance |
+| `lapak` | Stall owner — manages cold chain deliveries |
+| `pasar` | Market oversight |
+| `admin` | System administration |
 
 ## Features
 
-- Mine a New Block:
-  Allows users to mine new blocks and add them to the chain.
+- Livestock registration & lifecycle tracking
+- Dual halal validation (penyelia + juleha)
+- Faux-blockchain record per transaction
+- QR codes for consumer-facing verification
+- IoT sensor monitoring (temperature/humidity) during cold chain delivery
+- JWT authentication
+- Role-based dashboards (htpy templates)
 
-- Retrieve the Entire Blockchain:
-  Provides the capability to fetch the entire current state of the blockchain.
+## Scope & Status
 
-- Get the Last Mined Block:
-  Offers a quick view to see the most recently added block in the chain.
+This was a time-boxed proof-of-concept focused on demonstrating the core supply
+chain flow and blockchain provenance concept. Not every feature was built out.
 
-- Validate the Blockchain:
-  A utility to check and ensure the integrity and validity of the current state of the blockchain.
+### Implemented
 
-## Endpoints
+- Livestock registration through the supply chain lifecycle
+- Dual halal validation workflow (penyelia + juleha approval)
+- Faux-blockchain recording of transactions
+- QR code generation for consumer-facing provenance lookup
+- IoT sensor intake (temperature/humidity) during cold chain delivery
+- Role-based dashboards with JWT authentication
+- Transaction management (admin creates, lapak confirms receipt)
 
-Mine a Block: POST /mine_block/
+### Scoped Out
 
-Input: Data for the new block
-Output: Details of the newly mined block
-Get Entire Blockchain: GET /blockchain/
+- **Reporting module** — started in this POC as `routes/report.py` but
+  deprioritized to focus on core traceability. Fully implemented in the
+  Laravel rewrite.
+- Consumer questionnaire tied to QR codes — noted in the backlog but not
+  built in this POC phase.
+- Form validation — basic, not production-grade.
+- Various supply chain edge cases — the POC follows the happy path.
 
-Output: A list containing all the blocks in the current blockchain
-Get the Last Mined Block: GET /blockchain/last/
+## How to Run
 
-Output: Details of the last block in the chain
-Validate the Blockchain: GET /validate/
-
-Output: A boolean indicating whether the blockchain is valid
-
-## Setup and Run:
-
-Install the required libraries:
-
-```
-pip install fastapi[all] uvicorn
-```
-
-Navigate to the project directory and start the server:
-
-```
-cd path/to/your/directory
+```bash
+pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-Access the application at http://127.0.0.1:8000/ and the interactive API documentation at http://127.0.0.1:8000/docs.
+Visit `http://127.0.0.1:8000`.
 
-## Demo
+## Tech Stack
 
-![](images/demo.gif)
-
-## Contributor
-
-Erik Williams
+Python, FastAPI, SQLAlchemy, sqlitedict (faux-blockchain), htpy, Alembic, numpy, qrcode, PostgreSQL / SQLite.
