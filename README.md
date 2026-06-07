@@ -17,10 +17,10 @@ The `Blockchain` class in `src/blockchain.py` uses sqlitedict as a simple key-va
 | Role | Description |
 |------|-------------|
 | `peternak` | Farmer — registers livestock |
-| `rph` | Slaughterhouse — receives animals |
+| `rph` | Slaughterhouse — receives animals & manages cold chain deliveries |
 | `juleha` | Halal slaughterer |
 | `penyelia` | Supervisor — validates halal compliance |
-| `lapak` | Stall owner — manages cold chain deliveries |
+| `lapak` | Stall owner — receives & sells meat at market |
 | `pasar` | Market oversight |
 | `admin` | System administration |
 
