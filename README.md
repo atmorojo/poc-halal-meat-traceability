@@ -1,4 +1,4 @@
-# Archived: FastAPI-Blockchain — Proof-of-Concept Halal Meat Traceability
+# Archived: Proof-of-Concept Halal Meat Traceability
 
 > **This is a proof-of-concept, archived in favor of a Laravel rewrite. Code is preserved for reference only.**
 
